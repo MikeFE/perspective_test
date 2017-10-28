@@ -44,10 +44,11 @@ def get_toxicity(text):
         stats = {}
         for attrib in r.json()['attributeScores'].keys():
             stats[attrib] = r.json()['attributeScores'][attrib]['summaryScore']['value']
-        return stats
     except KeyError:
         print(r.text)
-        return 'error'
+        return {}
+
+    return stats
 
 
 def main():
