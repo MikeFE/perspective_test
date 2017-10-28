@@ -9,14 +9,14 @@ import json
 PERSPECTIVE_URL = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key={}'.format(API_KEY)
 
 def get_toxicity(text):
-        data = {
-            'comment': {'text': text},
-            'languages': ['en'],
-            'requestedAttributes': {'TOXICITY': {}}
-        }
+    data = {
+        'comment': {'text': text},
+        'languages': ['en'],
+        'requestedAttributes': {'TOXICITY': {}}
+    }
 
-        r = requests.post(PERSPECTIVE_URL, json=data)
-        return r.json()['attributeScores']['TOXICITY']['summaryScore']['value']
+    r = requests.post(PERSPECTIVE_URL, json=data)
+    return r.json()['attributeScores']['TOXICITY']['summaryScore']['value']
 
 
 def main():
