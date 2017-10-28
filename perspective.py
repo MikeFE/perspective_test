@@ -16,8 +16,11 @@ def get_toxicity(text):
     }
 
     r = requests.post(PERSPECTIVE_URL, json=data)
-    return r.json()['attributeScores']['TOXICITY']['summaryScore']['value']
-
+    try:
+        return r.json()['attributeScores']['TOXICITY']['summaryScore']['value']
+    except KeyError:
+        print(r.text)
+        return 'error'
 
 def main():
     try:
