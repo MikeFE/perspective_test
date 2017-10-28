@@ -25,19 +25,13 @@ def get_toxicity(text):
     data = {
         'comment': {'text': text},
         'languages': ['en'],
-        'requestedAttributes': {
-            'TOXICITY': {},
-            'ATTACK_ON_AUTHOR': {},
-            'ATTACK_ON_COMMENTER': {},
-            'INCOHERENT': {},
-            'INFLAMMATORY': {},
-            'LIKELY_TO_REJECT': {},
-            'OBSCENE': {},
-            'SEVERE_TOXICITY': {},
-            'SPAM': {},
-            'UNSUBSTANTIAL': {}
-        }
+        'requestedAttributes': {}
     }
+
+    # Request the statistics outlined in the enum_to_str_stats key strings.
+    # Below will request these fields from the API.
+    for k in enum_to_str_stats.keys():
+        data['requestedAttributes'][k] = {}
 
     r = requests.post(PERSPECTIVE_URL, json=data)
     try:
