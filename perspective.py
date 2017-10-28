@@ -55,8 +55,12 @@ def main():
     try:
         while 1:
             text = input('Enter text: ')
+            if not text:
+                continue
+
             for k, v in get_toxicity(text).items():
                 print('\t{} estimate: {:.1%}'.format(enum_to_str_stats[k], v))
+
     except KeyboardInterrupt:
         print()
         return
